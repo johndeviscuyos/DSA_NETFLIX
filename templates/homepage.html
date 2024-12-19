@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Codecks</div>
+        <ul class="nav-links">
+            <a href="{{ url_for('homepage') }}">Home</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('works') }}">Works</a>
+
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>TH I C H A</h1>
+            <p>A young girl flees from her homeland to start over with her mother. But when a crime ring ruins her life, she adopts a new identity to take revenge.</p>
+            <div class="buttons">
+                <button class="play-btn">▶ Play</button>
+                <button class="info-btn">ℹ More Info</button>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <img class="hero-image" src="https://via.placeholder.com/1600x900" alt="Hero Image">
+    </div>
+
+    <!-- My List Section -->
+    <section class="my-list">
+        <h2>My List</h2>
+        <div class="list-container">
+            <img src="https://via.placeholder.com/200x300?text=Law+%26+Order" alt="Law and Order">
+            <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
+            <img src="https://via.placeholder.com/200x300?text=The+Good+Place" alt="The Good Place">
+            <img src="https://via.placeholder.com/200x300?text=Closing+In" alt="Closing In">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+        <div class="footer-links">
+            <div>
+                <a href="#">Audio Description</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Help Center</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div>
+                <a href="#">Gift Cards</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Corporate Information</a>
+            </div>
+            <div>
+                <a href="#">Media Center</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <button class="service-code-btn">Service Code</button>
+        <p class="footer-note">&copy; 2024-2025 Codecks, Inc.</p>
+    </footer>
+
+</body>
+</html>

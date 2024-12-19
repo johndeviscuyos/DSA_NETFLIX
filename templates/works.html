@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/works.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('works') }}">Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Works Content -->
+    <div class="works-content">
+        <h1>Works</h1>
+        <p>Here are some featured works:</p>
+        <ul class="works-list">
+            <li>Project 1</li>
+            <li>Project 2</li>
+            <li>Project 3</li>
+        </ul>
+    </div>
+</body>
+</html>

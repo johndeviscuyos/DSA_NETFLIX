@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who's Watching?</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Who's watching?</h1>
+        <div class="profiles">
+            <div class="profile" onclick="redirectToHome()">
+                <img src="https://via.placeholder.com/150/0055FF/FFFFFF?text=Jhayzer" alt="Jhayzer">
+                <p>Jhayzer</p>
+            </div>
+            <div class="profile" onclick="redirectToHome()">
+                <img src="https://via.placeholder.com/150/FFA500/FFFFFF?text=Jennifer" alt="Jennifer">
+                <p>Jennifer</p>
+            </div>
+            <div class="profile" onclick="redirectToHome()">
+                <img src="https://via.placeholder.com/150/800080/FFFFFF?text=Mama" alt="Mama">
+                <p>Mama</p>
+            </div>
+            <div class="profile" onclick="redirectToHome()">
+                <img src="https://via.placeholder.com/150/FF00FF/FFFFFF?text=Jade" alt="Jade">
+                <p>Jade</p>
+            </div>
+            <div class="profile" onclick="redirectToHome()">
+                <img src="https://via.placeholder.com/150/00AA00/FFFFFF?text=Anthony" alt="Anthony">
+                <p>Anthony</p>
+            </div>
+        </div>
+        <button class="manage-btn" onclick="alert('Manage Profiles Clicked!')">Manage Profiles</button>
+    </div>
+
+    <!-- JS Script -->
+    <script>
+        // Redirect to homepage
+        function redirectToHome() {
+            window.location.href = "/homepage";  // Flask route for the homepage
+        }
+    </script>
+</body>
+</html>
