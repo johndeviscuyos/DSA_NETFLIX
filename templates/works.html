@@ -21,25 +21,27 @@
     </nav>
 
     <!-- My List Section -->
-    <section class="my-list">
+  <section class="my-list">
     <h2>My List</h2>
     <div class="list-container">
-        <div class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=Law+%26+Order" alt="Law and Order">
+        <a href="{{ url_for('linklist') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/linklist.png') }}" alt="LinkList">
             <div class="description">A show about justice and order in the courtroom.</div>
-        </div>
-        <div class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
+        </a>
+
+         <a href="{{ url_for('convert') }}" class="list-item">
+           <img src="{{ url_for('static', filename='images/stack.png') }}" alt="Stack">
             <div class="description">A world of heroes and powerful quirks.</div>
-        </div>
-        <div class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=The+Good+Place" alt="The Good Place">
+        </a>
+
+        <a href="/the-good-place" class="list-item">
+            <img src="https://via.placeholder.com/200x300?text=The+Good+Place" alt="Queue">
             <div class="description">A humorous take on life and the afterlife.</div>
-        </div>
-        <div class="list-item">
+        </a>
+        <a href="/closing-in" class="list-item">
             <img src="https://via.placeholder.com/200x300?text=Closing+In" alt="Closing In">
             <div class="description">A suspenseful thriller about secrets unfolding.</div>
-        </div>
+        </a>
     </div>
 </section>
 
@@ -47,16 +49,47 @@
 <section class="second-list">
     <h2>Another List</h2>
     <div class="list-container">
-        <!-- First Item from My List -->
-        <div class="list-item">
+        <a href="/law-and-order" class="list-item">
             <img src="https://via.placeholder.com/200x300?text=Law+%26+Order" alt="Law and Order">
             <div class="description">A show about justice and order in the courtroom.</div>
-        </div>
-        <!-- Second Item from My List -->
-        <div class="list-item">
+        </a>
+        <a href="/my-hero-academia" class="list-item">
             <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
             <div class="description">A world of heroes and powerful quirks.</div>
-        </div>
+        </a>
     </div>
 </section>
+
+<footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+        <div class="footer-links">
+            <div>
+                <a href="#">Audio Description</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Help Center</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div>
+                <a href="#">Gift Cards</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Corporate Information</a>
+            </div>
+            <div>
+                <a href="#">Media Center</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <button class="service-code-btn">Service Code</button>
+        <p class="footer-note">&copy; 2024-2025 Codecks, Inc.</p>
+    </footer>
 </html>

@@ -178,3 +178,73 @@ body {
     padding: 2rem; /* Add padding for spacing */
     max-width: 80%; /* Constrain the maximum width */
 }
+.footer {
+    background-color: #141414;
+    color: #737373;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer .social-icons a {
+    color: #737373;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #fff;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: #737373;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.service-code-btn {
+    background-color: transparent;
+    border: 1px solid #737373;
+    color: #737373;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.service-code-btn:hover {
+    background-color: #737373;
+    color: #000;
+}
+
+.footer-note {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
