@@ -1,0 +1,140 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Black background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 60px; /* Adjust for navbar */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem 3rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-and-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: red;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: gray;
+}
+}
+
+/* Main Layout Container */
+.stack-container {
+    display: flex;
+    gap: 40px; /* Space between sections */
+    align-items: flex-start; /* Align to the top */
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 300px; /* Fixed width */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Input Field */
+input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 1rem;
+    width: 50%;
+    margin top: 10px;
+}
+
+/* Button Layout */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: darkred;
+}
+
+/* Data Display Section */
+#stack-display {
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 800px; /* Bigger width for data display */
+    height: 300px; /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    background-color: #000;
+    margin-bottom: 30px;
+}
+
+/* Heading Style */
+h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

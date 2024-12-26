@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from linklist import Linklist
 from conversion import infix_to_postfix
+from queue import Queue
+from binary_tree import BinaryTree, print_fancy_tree
 app = Flask(__name__)
 
 # Instantiate the linked list
 linked_list = Linklist()
+cart = Queue()
 
 
 @app.route("/")
@@ -69,14 +72,56 @@ def linklist():
 @app.route("/convert", methods=["GET", "POST"])
 def convert():
     result = ""
+    steps = []  # New variable to hold steps
     if request.method == "POST":
         expression = request.form.get("expression")  # Get input from form
         try:
-            # Perform conversion
-            result = infix_to_postfix(expression)  # Use function from conversion.py
+            # Perform conversion and get steps
+            result, steps = infix_to_postfix(expression)
         except Exception as e:
             result = f"Error: {str(e)}"
-    return render_template("convert.html", result=result)
+
+    # Return the result and steps to the template
+    return render_template("convert.html", result=result, steps=steps)
+
+@app.route('/queue', methods=['GET', 'POST'])
+def queue():
+    message = ""
+    if request.method == 'POST':
+        action = request.form.get('action')
+        item = request.form.get('item')
+
+        try:
+            if action == 'enqueue' and item:
+                cart.enqueue(item)
+            elif action == 'dequeue':
+                cart.dequeue()
+        except Exception as e:
+            message = f"Error: {str(e)}"
+
+    # Prepare the queue items for rendering
+    items = []
+    current = cart.front
+    while current:
+        items.append(current.data)
+        current = current.next
+
+    return render_template("queue.html", items=items, message=message)
+
+@app.route("/binary", methods=["GET", "POST"])
+def binary_tree():
+    tree = BinaryTree(10)  # Initialize or load your tree
+    if request.method == "POST":
+        action = request.form.get("action")
+        if action == "insert":
+            value = int(request.form.get("value"))
+            tree.insert(value)  # Implement an insert method in your BinaryTree class
+        elif action == "delete":
+            value = int(request.form.get("value"))
+            tree.delete_node(tree.root, value)
+
+    tree_display = print_fancy_tree(tree.root)
+    return render_template("binary.html", tree_display=tree_display)
 
 if __name__ == "__main__":
     app.run(debug=True)

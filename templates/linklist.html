@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linklist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/linklist.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="stack-container">
+    <h2>Current Stack:</h2>
+    <!-- Dynamic stack contents/message -->
+    <div id="stack-display">
+        <p><strong>{{ stack_contents }}</strong></p>
+    </div>
+
+    <form method="POST">
+        <div>
+            <label for="data">Data:</label>
+            <input type="text" name="data" id="data" placeholder="Enter data...">
+        </div>
+        <div>
+            <button type="submit" name="push">Push</button>
+            <button type="submit" name="pop">Pop</button>
+            <button type="submit" name="peek">Peek</button>
+            <button type="submit" name="remove_beginning">Remove from Beginning</button>
+            <button type="submit" name="remove_at_end">Remove from End</button>
+            <button type="submit" name="remove_at">Remove At</button>
+        </div>
+    </form>
+</div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/linklist.js') }}"></script>
+</body>
+</html>

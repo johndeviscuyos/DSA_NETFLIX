@@ -26,21 +26,21 @@
     <div class="list-container">
         <a href="{{ url_for('linklist') }}" class="list-item">
             <img src="{{ url_for('static', filename='images/linklist.png') }}" alt="LinkList">
-            <div class="description">A show about justice and order in the courtroom.</div>
+            <div class="description">A dynamic data structure consisting of nodes, where each node contains data and a reference (link) to the next node. It allows efficient insertion and deletion but requires sequential access for traversal.</div>
         </a>
 
          <a href="{{ url_for('convert') }}" class="list-item">
            <img src="{{ url_for('static', filename='images/stack.png') }}" alt="Stack">
-            <div class="description">A world of heroes and powerful quirks.</div>
+            <div class="description">A linear data structure that follows the LIFO (Last In, First Out) principle. Operations like push (insert) and pop (remove) occur at one end (the top), making it ideal for tasks such as expression evaluation and backtracking.</div>
         </a>
 
-        <a href="/the-good-place" class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=The+Good+Place" alt="Queue">
-            <div class="description">A humorous take on life and the afterlife.</div>
+        <a href="{{ url_for('queue') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/queue.png') }}" alt="Queue">
+            <div class="description">A linear data structure that follows the FIFO (First In, First Out) principle. Elements are added at the rear (enqueue) and removed from the front (dequeue)..</div>
         </a>
-        <a href="/closing-in" class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=Closing+In" alt="Closing In">
-            <div class="description">A suspenseful thriller about secrets unfolding.</div>
+        <a href="/aa" class="list-item">
+            <img src="{{ url_for('static', filename='images/Binary.png') }}" alt="binary">
+            <div class="description">A hierarchical data structure in which each node has at most two children, referred to as the left and right child.</div>
         </a>
     </div>
 </section>

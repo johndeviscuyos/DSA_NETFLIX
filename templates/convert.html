@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infix to Postfix Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/convert.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Infix to Postfix Converter</h1>
+        </header>
+
+        <section class="converter">
+            <!-- Input Form -->
+            <form method="POST" action="/convert">
+                <input id="expression" name="expression" type="text" placeholder="Enter Infix Expression" required />
+                <button type="submit">Convert</button>
+            </form>
+
+            <!-- Result Display -->
+            <div id="result">
+                <h2>Result:</h2>
+                <p id="output">{{ result }}</p> <!-- Display result from Flask -->
+            </div>
+
+            <!-- Steps Display -->
+            {% if steps %}
+            <div id="steps">
+                <h2>Steps:</h2>
+                <ul>
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>

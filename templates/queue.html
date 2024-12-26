@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Shopping Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/queue.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Queue Section -->
+    <div class="profile-content" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h1>Codecks Cart Receipt</h1>
+        <form method="POST" action="/queue" style="margin-bottom: 20px;">
+            <input type="text" name="item" placeholder="Enter item">
+            <button type="submit" name="action" value="enqueue">Add to Cart</button>
+            <button type="submit" name="action" value="dequeue">Remove from Cart</button>
+        </form>
+
+        <!-- Display Receipt Style Items -->
+        <div style="border: 2px dashed #000; padding: 20px; width: 300px; background-color: #fff; color: #000; text-align: center;display: flex; justify-content: center; align-items: center; height: 10vh; flex-direction: column">
+            <h2>Receipt</h2>
+            <ul style="list-style: none; padding: 0;">
+                {% for item in items %}
+                    <li style="border-bottom: 1px dotted #000; padding: 5px 0;">{{ item }}</li>
+                {% endfor %}
+            </ul>
+            <p style="margin-top: 10px;">Thank you for shopping!</p>
+        </div>
+    </div>
+</body>
+</html>

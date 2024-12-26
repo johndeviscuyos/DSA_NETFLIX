@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/binary.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <h1>Binary Tree Visualization</h1>
+
+        <!-- Form for Binary Tree Operations -->
+        <form method="POST" class="binary-form">
+            <input type="number" name="value" class="input-field" placeholder="Enter value" required>
+            <button type="submit" name="action" class="btn insert-btn" value="insert">Insert</button>
+            <button type="submit" name="action" class="btn delete-btn" value="delete">Delete</button>
+        </form>
+    </div>
+
+    <!-- Tree Display -->
+    <div class="tree-display">
+        <pre>{{ tree_display }}</pre>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+        <div class="footer-links">
+            <div>
+                <a href="#">Audio Description</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Help Center</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div>
+                <a href="#">Gift Cards</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Corporate Information</a>
+            </div>
+            <div>
+                <a href="#">Media Center</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <button class="service-code-btn">Service Code</button>
+        <p class="footer-note">&copy; 2024-2025 Codecks, Inc.</p>
+    </footer>
+</body>
+</html>
