@@ -1,13 +1,27 @@
 from flask import Flask, render_template, request, jsonify
 from linklist import Linklist
 from conversion import infix_to_postfix
-from queue import Queue
+from queue_util import Queue
 from binary_tree import BinaryTree, print_fancy_tree
+from graph import create_train_graph, find_shortest_path
+
 app = Flask(__name__)
 
 # Instantiate the linked list
 linked_list = Linklist()
 cart = Queue()
+G = create_train_graph()
+
+# Categorize stations by train line
+stations = {
+    'MRT': ['North Avenue', 'Quezon Avenue', 'GMA Kamuning', 'Araneta Center-Cubao', 'Santolan-Annapolis', 'Ortigas',
+            'Shaw Boulevard', 'Boni', 'Guadalupe', 'Buendia', 'Ayala', 'Magallanes', 'Taft Avenue'],
+    'LRT1': ['Roosevelt', 'Balintawak', 'Monumento', '5th Avenue', 'R. Papa', 'Abad Santos', 'Blumentritt', 'Tayuman',
+             'Bambang', 'Doroteo Jose', 'Carriedo', 'Central Terminal', 'UN Avenue', 'Pedro Gil', 'Quirino',
+             'Vito Cruz', 'Gil Puyat', 'Libertad', 'EDSA', 'Baclaran','Redemptorist','MIA', 'Asiaworld','Ninoy Aquino', 'Dr.Santos','Las Piñas', 'Zapote','Niog'],
+    'LRT2': ['Recto', 'Legarda', 'Pureza', 'V. Mapa', 'J. Ruiz', 'Gilmore', 'Betty Go-Belmonte', 'Anonas', 'Katipunan',
+             'Santolan']
+}
 
 
 @app.route("/")
@@ -122,6 +136,29 @@ def binary_tree():
 
     tree_display = print_fancy_tree(tree.root)
     return render_template("binary.html", tree_display=tree_display)
+
+@app.route("/stations")
+def stations():
+    return render_template("stations.html", stations=stations)
+
+
+@app.route("/find_path", methods=["POST"])
+def find_path():
+    origin = request.form.get("origin")
+    destination = request.form.get("destination")
+
+    if origin and destination:
+        path, distance = find_shortest_path(G, origin, destination)
+        if path:
+            return render_template("stations.html", stations=stations, path=path, distance=distance, origin=origin,
+                                   destination=destination)
+        else:
+            error = "No path found between the selected stations."
+            return render_template("stations.html", stations=stations, error=error)
+
+    error = "Please select both origin and destination stations."
+    return render_template("stations.html", stations=stations, error=error)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -49,9 +49,9 @@
 <section class="second-list">
     <h2>Another List</h2>
     <div class="list-container">
-        <a href="/law-and-order" class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=Law+%26+Order" alt="Law and Order">
-            <div class="description">A show about justice and order in the courtroom.</div>
+        <a href="{{ url_for('stations') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/graph.png') }}" alt="Law and Order">
+            <div class="description">Hindi na muling maliligaw sa landas na tatahakin</div>
         </a>
         <a href="/my-hero-academia" class="list-item">
             <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
