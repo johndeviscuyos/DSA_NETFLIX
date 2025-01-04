@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codecks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stations.css') }}">
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-and-nav">
+                <div class="logo">Codecks</div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const stations = {
+            'MRT': ['North Avenue', 'Quezon Avenue', 'GMA Kamuning', 'Araneta Center-Cubao', 'Santolan-Annapolis', 'Ortigas', 'Shaw Boulevard', 'Boni', 'Guadalupe', 'Buendia', 'Ayala', 'Magallanes', 'Taft Avenue'],
+            'LRT1': ['Roosevelt', 'Balintawak', 'Monumento', '5th Avenue', 'R. Papa', 'Abad Santos', 'Blumentritt', 'Tayuman', 'Bambang', 'Doroteo Jose', 'Carriedo', 'Central Terminal', 'UN Avenue', 'Pedro Gil', 'Quirino', 'Vito Cruz', 'Gil Puyat', 'Libertad', 'EDSA', 'Baclaran', 'Redemptorist','MIA', 'Asiaworld','Ninoy Aquino', 'Dr.Santos','Las Piñas', 'Zapote','Niog'],
+            'LRT2': ['Recto', 'Legarda', 'Pureza', 'V. Mapa', 'J. Ruiz', 'Gilmore', 'Betty Go-Belmonte', 'Anonas', 'Katipunan', 'Santolan', 'Marikina-Pasig', 'Antipolo']
+        };
+
+        function updateStations(line, target) {
+            const stationSelect = document.getElementById(target);
+            stationSelect.innerHTML = ""; // Clear existing options
+
+            stations[line].forEach(station => {
+                const option = document.createElement("option");
+                option.value = station;
+                option.textContent = station;
+                stationSelect.appendChild(option);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="carousel">
+        <button class="carousel-btn left-btn" onclick="prevImage()">&#8592;</button>
+        <img id="carousel-image" src="{{ url_for('static', filename='images/MRT3.png') }}" alt="MRT3">
+        <button class="carousel-btn right-btn" onclick="nextImage()">&#8594;</button>
+    </div>
+
+    <h1>Hindi na Maliligaw Train Route</h1>
+
+    <form action="/find_path" method="POST">
+        <div>
+            <h2>Origin</h2>
+            <label for="origin_line">Select Transit Line:</label>
+            <select id="origin_line" onchange="updateStations(this.value, 'origin_station')">
+                <option value="">Select Line</option>
+                <option value="MRT">MRT</option>
+                <option value="LRT1">LRT1</option>
+                <option value="LRT2">LRT2</option>
+            </select>
+
+            <label for="origin_station">Select Station:</label>
+            <select id="origin_station" name="origin">
+                <option value="">Select Station</option>
+            </select>
+        </div>
+
+        <div>
+            <h2>Destination</h2>
+            <label for="destination_line">Select Transit Line:</label>
+            <select id="destination_line" onchange="updateStations(this.value, 'destination_station')">
+                <option value="">Select Line</option>
+                <option value="MRT">MRT</option>
+                <option value="LRT1">LRT1</option>
+                <option value="LRT2">LRT2</option>
+            </select>
+
+            <label for="destination_station">Select Station:</label>
+            <select id="destination_station" name="destination">
+                <option value="">Select Station</option>
+            </select>
+        </div>
+
+        <button type="submit">Find Path</button>
+    </form>
+
+    {% if path %}
+        <h2>Shortest Path:</h2>
+        <p>{{ path | join(' -> ') }}</p>
+        <h2>Origin:</h2>
+        <p>{{ origin }}</p>
+        <h2>Destination:</h2>
+        <p>{{ destination }}</p>
+        <h2>Distance:</h2>
+        <p>{{ distance }} stations</p>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <script>
+        // Image Carousel Logic
+        const images = [
+            { src: "{{ url_for('static', filename='images/MRT3.png') }}", alt: "MRT3" },
+            { src: "{{ url_for('static', filename='images/LRT1.png') }}", alt: "LRT1" },
+            { src: "{{ url_for('static', filename='images/LRT2.png') }}", alt: "LRT2" }
+        ];
+
+        let currentIndex = 0;
+
+        function updateImage() {
+            const imageElement = document.getElementById("carousel-image");
+            imageElement.src = images[currentIndex].src;
+            imageElement.alt = images[currentIndex].alt;
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length; // Navigate to the previous image
+            updateImage();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Navigate to the next image
+            updateImage();
+        }
+    </script>
+</body>
+</html>

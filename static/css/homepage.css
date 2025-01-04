@@ -20,6 +20,7 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     width: 100%;
+    top: 0;
     z-index: 100;
 }
 
@@ -50,32 +51,85 @@ body {
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Align content to the left */
-    padding-left: 3rem; /* Add padding to the left */
+    height: 100vh; /* Full screen height */
+    overflow: hidden;
 }
 
-.hero-image {
+.hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    object-fit: cover; /* Ensures the video covers the area */
 }
 
-.hero-overlay {
+.hero .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, black, transparent);
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust overlay opacity */
+    z-index: 1; /* Behind content */
+}
+
+.hero .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; /* White text */
+    z-index: 2; /* Above overlay */
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem; /* Adjust font size */
+    margin: 0 0 20px 0;
+}
+
+.hero p {
+    font-size: 1.2rem; /* Adjust font size */
+    line-height: 1.5; /* Better readability */
+    margin-bottom: 20px;
+}
+
+.hero .play-btn {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.hero .play-btn:hover {
+    background-color: #0056b3;
+}
+
+.content{
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+}
+
+.content h1{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.content p{
+    font-size: 1.4rem;
+    margin-top: 20px;
+    max-width: 700px; /* Prevents the text from becoming too wide */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-text {
@@ -86,15 +140,6 @@ body {
     color: white;
 }
 
-.hero-text h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.hero-text p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
 
 .buttons button {
     padding: 0.8rem 1.5rem;
@@ -106,8 +151,19 @@ body {
 }
 
 .play-btn {
-    background-color: white;
-    color: black;
+    background-color: #e50914; /* Netflix red color */
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.play-btn:hover{
+    background-color: #f40612;
 }
 
 .info-btn {
@@ -115,9 +171,10 @@ body {
     color: white;
 }
 
-/* My List Section */
+/* Most Visited Section */
 .my-list {
     padding: 2rem 3rem;
+
 }
 
 .my-list h2 {
@@ -125,22 +182,232 @@ body {
     font-size: 2rem;
 }
 
-.list-container {
+.inner-container {
     display: flex;
     gap: 1rem;
-    overflow-x: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
     scroll-behavior: smooth;
+    padding: 20px;
+}
+.inner-container{
+    width: 100%;
+    max-height: 300px;
+    margin-right:10px;
+    transition: transform 450ms;
+    object-fit: contain;
 }
 
-.list-container img {
+.inner-container img {
     width: 200px;
     border-radius: 5px;
     transition: transform 0.3s ease;
+
 }
 
-.list-container img:hover {
+.inner-container img:hover {
+    transform: scale(1.08);
+}
+
+.inner-container::-webkit-scrollbar{
+    display: none;
+}
+
+.outer-container{
+   color: white;
+    margin-left: 20px;
+}
+
+/* Container Styles */
+.my-list .outer-container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.my-list .inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.my-list .image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.my-list img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover Effect on Images */
+.my-list .image-wrapper:hover img {
     transform: scale(1.05);
 }
+
+/* Overlay with Description and Link */
+.my-list .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.my-list .image-wrapper:hover .overlay {
+    opacity: 1;
+}
+
+/* Paragraph and "See More" Link */
+.my-list .description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.my-list .see-more {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #e50914;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.my-list .see-more:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Trending Section */
+.my-list {
+    padding: 2rem 3rem;
+
+}
+
+.my-list h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.inner-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 20px;
+}
+.inner-container{
+    width: 100%;
+    max-height: 300px;
+    margin-right:10px;
+    transition: transform 450ms;
+    object-fit: contain;
+}
+
+.inner-container img {
+    width: 200px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+
+}
+
+.inner-container img:hover {
+    transform: scale(1.08);
+}
+
+.inner-container::-webkit-scrollbar{
+    display: none;
+}
+
+.outer-container{
+   color: white;
+    margin-left: 20px;
+}
+
+
+/*Frequent Questions*/
+.frequent-container h2{
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.frequent-container{
+    color: white;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    height:50vh;
+}
+
+.ques{
+    background-color: #2D2D2D;
+    padding: 30px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.ques:hover{
+    background-color: #545454;
+}
+
+.ans p{
+    background-color: #2D2D2D;
+    padding: 30px;
+    font-size: 30px;
+    border-top: 1px solid #000;
+}
+.ans{
+    max-height: 0;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height .3s ease-in-out;
+}
+
+.faq.active  .ans{
+    max-height: 300px;
+}
+
+.faq-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq i{
+    transition: all .3s ease-in-out;
+}
+.faq.active i{
+    transform: rotate(45deg);
+}
+
+
+
 /* Footer Styles */
 .footer {
     background-color: #141414;

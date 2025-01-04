@@ -1,0 +1,236 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem 3rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-and-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: red;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+/* Ensure nav-links layout remains unaffected */
+.nav-links li {
+    list-style: none; /* Avoid bullet points for list items */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: gray; /* Same hover effect */
+}
+
+/* Main Form */
+form {
+    width: 50%; /* Adjust the width to be a percentage or static value */
+    max-width: 600px; /* Optional: enforce a maximum width */
+    height: auto; /* Optional: keep the height dynamic or set to a fixed value like '400px' */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    border: 2px solid black;
+    background-color: #141414;
+    border-radius: 5px;
+
+}
+
+/* Header Styling */
+h1 {
+    margin: 20px 0; /* Add margin to separate it from surrounding elements */
+    margin-top: 100px;
+    text-align: center;
+}
+
+form fieldset {
+    border: none;
+    padding: 15px 0;
+}
+
+form legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px 15px;
+    color: #fff;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: darkred;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+/* Carousel Styles */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 120px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.carousel img {
+    max-width: 800px;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid white;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-btn {
+    position: absolute; /* Position buttons relative to the carousel */
+    top: 50%; /* Center buttons vertically against the image */
+    transform: translateY(-50%); /* Adjust the vertical alignment */
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: color 0.3s;
+}
+
+.carousel-btn:hover {
+    color: red;
+}
+
+.left-btn {
+    left: 20px;
+    margin-left: 420px;
+}
+
+.right-btn {
+    right: 20px;
+    margin-right: 420px;
+
+}
+
+/* Form Styles */
+form {
+    width: 50%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid black;
+    background-color: #141414;
+    border-radius: 5px;
+    color: white;
+}
+
+h1 {
+    margin: 20px auto;
+    text-align: center;
+}
+
+form button {
+    padding: 10px 15px;
+    color: #fff;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: darkred;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    .carousel img {
+        max-width: 80%;
+    }
+
+    .carousel-btn {
+        font-size: 1.5rem;
+    }
+}

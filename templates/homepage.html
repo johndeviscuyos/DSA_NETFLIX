@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />"
 </head>
 <body>
-    <!-- Top Navigation Bar -->
+<!-- Top Navigation Bar -->
     <nav class="navbar">
         <div class="logo">Codecks</div>
         <ul class="nav-links">
@@ -19,36 +20,154 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-text">
-            <h1>TH I C H A</h1>
-            <p>A young girl flees from her homeland to start over with her mother. But when a crime ring ruins her life, she adopts a new identity to take revenge.</p>
-            <div class="buttons">
-                <button class="play-btn">▶ Play</button>
-                <button class="info-btn">ℹ More Info</button>
+<div class="hero">
+    <video src="../static/Images/CODECKSS.mp4" autoplay loop muted playsinline>
+    </video>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>CODECKS</h1>
+        <p style="margin-top: 30px;">Welcome to Codecks, a vibrant community exclusively for students passionate about coding and technology.<br>
+            Here, we collaborate, learn, and grow together by sharing ideas, solving problems, and exploring<br>
+            innovative projects. Whether you're a beginner or an advanced programmer, this group is your space to<br>
+            develop skills, connect with peers, and thrive in the world of coding.</p>
+    </div>
+</div>
+
+
+    <!--Most Visited Section-->
+    <section class="my-list">
+        <div class="outer-container">
+            <h2>Most Visited</h2>
+            <div class="inner-container">
+                <div class="image-wrapper">
+                    <img src="../static/Images/1.jpg" alt="awake">
+                    <div class="overlay">
+                        <p class="description">Thea is a pro at snoozing and scoring.</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="../static/Images/2.jpg" alt="Game ON">
+                    <div class="overlay">
+                        <p class="description">Goofy gamer with winning moves—Shan.</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="../static/Images/3.jpg" alt="About Me">
+                    <div class="overlay">
+                        <p class="description"> You're listening to the family’s steady star, Shervin!</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="hero-overlay"></div>
-        <img class="hero-image" src="https://via.placeholder.com/1600x900" alt="Hero Image">
-    </div>
+    </section>
 
-    <!-- My List Section -->
+
+    <!-- Trending Section -->
     <section class="my-list">
-        <h2>My List</h2>
-        <div class="list-container">
-            <img src="https://via.placeholder.com/200x300?text=Law+%26+Order" alt="Law and Order">
-            <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
-            <img src="https://via.placeholder.com/200x300?text=The+Good+Place" alt="The Good Place">
-            <img src="https://via.placeholder.com/200x300?text=Closing+In" alt="Closing In">
+        <div class="outer-container">
+            <h2>Trending</h2>
+            <div class="inner-container">
+                <div class="image-wrapper">
+                    <img src="../static/Images/4.jpg" alt="CHAMP">
+                    <div class="overlay">
+                        <p class="description">Here comes the Rift's Wizard—Ralph!</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="../static/Images/5.jpg" alt="soon">
+                    <div class="overlay">
+                        <p class="description">Devis said, "Focus on the goal!"</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="../static/Images/6.jpg" alt="CHILL GUY">
+                    <div class="overlay">
+                        <p class="description">I'm just Nash.</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <img src="../static/Images/7.jpg" alt="CLICK">
+                    <div class="overlay">
+                        <p class="description">April, the shutterbug capturing life’s brightest moments!</p>
+                        <a href="#" class="see-more">See More</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+
+
+        <div class="frequent-container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <!--Question1 -->
+                <div class="faq">
+                    <div class="ques">
+                        <p>What is Data Structure?</p>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="ans">
+                        <p>A data structure is a way to organize,
+                                store, and manipulate data in a computer system.
+                                Data structures are a fundamental part of
+                                computer science and are used to give form to
+                                abstract data points. They help users and systems
+                                to efficiently work with, store, and organize data.</p>
+                    </div>
+                </div>
+
+                <!--Question2 -->
+                <div class="faq">
+                    <div class="ques">
+                        <p>What is an Algorithm?</p>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="ans">
+                        <p>An algorithm is a set of instructions
+                                that are followed in a specific order
+                                to complete a task or solve a problem.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <script>
+        console.log("Homepage loaded successfully!");
+
+        const faqs = document.querySelectorAll(".faq");
+
+        faqs.forEach((faq) => {
+            faq.addEventListener("click", () => {
+                // Toggle the "active" class on the clicked FAQ
+                faq.classList.toggle("active");
+
+                // Close other FAQs by removing the "active" class
+                faqs.forEach((otherFaq) => {
+                    if (otherFaq !== faq) {
+                        otherFaq.classList.remove("active");
+                    }
+                });
+            });
+        });
+
+    </script>
+
     </section>
 
     <footer class="footer">
         <div class="social-icons">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <div class="footer-links">
             <div>
