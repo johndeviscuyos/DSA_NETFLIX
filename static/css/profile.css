@@ -9,6 +9,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #141414;
     color: white;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Navbar Styles */
@@ -53,21 +54,197 @@ body {
     color: gray;
 }
 
-.profile-content {
+/* Works Content (If Needed for Other Sections) */
+.works-content {
+    margin-top: 6rem; /* Avoid overlap with fixed navbar */
     text-align: center;
-    margin-top: 6rem;
+    padding: 2rem;
 }
 
-.profile-content h1 {
-    font-size: 2.5rem;
+.works-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
 }
 
-.profile-content button {
-    padding: 0.8rem 1.5rem;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.works-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #ccc;
+}
+
+.works-list {
+    list-style: none;
+    padding: 0;
+}
+
+.works-list li {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #f0f0f0;
+    transition: color 0.3s;
+}
+
+.works-list li:hover {
+    color: red;
     cursor: pointer;
+}
+
+/* My List Section */
+.my-list {
+    padding: 8rem 3rem; /* Keeps space from the navbar intact */
+    position: relative; /* Ensure the section content stacks properly */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack the heading and list container */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center the text */
+}
+
+.my-list h2 {
+    margin-bottom: 2rem; /* Add more space below the heading */
+    font-size: 2.5rem; /* Increase the heading size */
+}
+
+/* Modified the container to make it larger and center its items */
+.list-container {
+    display: flex;
+    gap: 2rem; /* Increase spacing between items */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 2rem; /* Increase padding for the "larger" effect */
+    justify-content: center; /* Center all items */
+    max-width: 90%; /* Larger width relative to the screen */
+}
+
+.list-item {
+    position: relative;
+    width: 200px;
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+.list-item img {
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease; /* Smooth scaling for the image */
+}
+
+.list-item:hover {
+    transform: scale(1.1); /* Expand the list item on hover */
+}
+
+.list-item:hover .description {
+    opacity: 1; /* Make the description text visible on hover */
+    transform: translateY(0); /* Bring text into view */
+}
+
+.description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px); /* Slightly move text downwards */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade-in and movement */
+    font-size: 0.9rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+/* Second List Section */
+.second-list {
+    padding: 1rem 3rem; /* Maintain spacing from the navbar */
+    margin-top: -2rem;
+    display: flex;
+    flex-direction: column; /* Stack heading and container */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically within the section */
+    text-align: center; /* Center the text */
+}
+
+.second-list h2 {
+    margin-bottom: 2rem; /* Add space below the heading */
+    font-size: 2.5rem; /* Adjust heading size */
+}
+
+.second-list .list-container {
+    display: flex;
+    gap: 2rem; /* Adjust gap between list items */
+    justify-content: center; /* Center all items horizontally */
+    flex-wrap: wrap; /* Ensure flexibility and wrapping */
+    padding: 2rem; /* Add padding for spacing */
+    max-width: 80%; /* Constrain the maximum width */
+}
+.footer {
+    background-color: #141414;
+    color: #737373;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer .social-icons a {
+    color: #737373;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #fff;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: #737373;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.service-code-btn {
+    background-color: transparent;
+    border: 1px solid #737373;
+    color: #737373;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.service-code-btn:hover {
+    background-color: #737373;
+    color: #000;
+}
+
+.footer-note {
     margin-top: 1rem;
+    font-size: 0.8rem;
 }

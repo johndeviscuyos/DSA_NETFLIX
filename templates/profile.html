@@ -18,11 +18,82 @@
             </ul>
         </div>
     </nav>
-    <div class="profile-content">
-        <h1>Your Profile</h1>
-        <p>Welcome to your profile page. Here you can view or update your details.</p>
-        <button onclick="updateProfile()">Update Profile</button>
+
+
+<section class="my-list">
+    <h2>Behind Codecks</h2>
+    <div class="list-container">
+        <a href="{{ url_for('cuyos') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/5.jpg') }}" alt="LinkList">
+            <div class="description">Infoo</div>
+        </a>
+
+         <a href="{{ url_for('ronda') }}" class="list-item">
+           <img src="{{ url_for('static', filename='images/4.jpg') }}" alt="Stack">
+            <div class="description">info</div>
+        </a>
+
+        <a href="{{ url_for('diong') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="Queue">
+            <div class="description">info</div>
+        </a>
+        <a href="{{ url_for('uy') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="binary">
+            <div class="description">info</div>
+        </a>
     </div>
-    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</section>
+
+<!-- Second List Section -->
+<section class="second-list">
+    <h2>The People That Will Step foot on Mars</h2>
+    <div class="list-container">
+        <a href="{{ url_for('garcia') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/6.jpg') }}" alt="Law and Order">
+            <div class="description">Hindi na muling maliligaw sa landas na tatahakin</div>
+        </a>
+         <a href="{{ url_for('varron') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/7.jpg') }}" alt="My Hero Academia">
+            <div class="description">A world of heroes and powerful quirks.</div>
+        </a>
+          <a href="{{ url_for('mangulabnan') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="Law and Order">
+            <div class="description">A world of heroes and powerful quirks.</div>
+        </a>
+    </div>
+</section>
+<footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footer-links">
+            <div>
+                <a href="#">Audio Description</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Legal Notices</a>
+            </div>
+            <div>
+                <a href="#">Help Center</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div>
+                <a href="#">Gift Cards</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Corporate Information</a>
+            </div>
+            <div>
+                <a href="#">Media Center</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <button class="service-code-btn">Service Code</button>
+        <p class="footer-note">&copy; 2024-2025 Codecks, Inc.</p>
+    </footer>
+
 </body>
 </html>

@@ -39,7 +39,32 @@ def profile():
 @app.route("/works")
 def works():
     return render_template("works.html")  # Works page
+@app.route("/cuyos")
+def cuyos():
+    return render_template("cuyos.html")
 
+@app.route("/ronda")
+def ronda():
+    return render_template("ronda.html")
+
+@app.route("/uy")
+def uy():
+    return render_template("uy.html")
+
+@app.route("/varron")
+def varron():
+    return render_template("varron.html")
+
+@app.route("/mangulabnan")
+def mangulabnan():
+    return render_template("mangulabnan.html")
+
+@app.route("/diong")
+def diong():
+    return render_template("diong.html")
+@app.route("/garcia")
+def garcia():
+    return render_template("garcia.html")
 @app.route('/linklist', methods=["GET", "POST"])  # Combined route for stack operations
 def linklist():
     stack_contents = ""

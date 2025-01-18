@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cuyos.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+
+                <li><a href="{{ url_for('profile') }}">Back to Profile</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="title">Prison Break</div>
+            <div class="tagline">To free his innocent brother, a genius engineer plots an elaborate escape with help from friends—and the tattoos on his body.</div>
+            <div class="buttons">
+                <button class="button play-button">Play</button>
+                <button class="button add-button">Add to List</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="details">
+        <div><strong>2017</strong> | 5 Seasons | <strong>HD</strong></div>
+        <div>Genres: TV Action & Adventure, Crime TV Shows, US TV Shows</div>
+        <div>This show is: Dark, Suspenseful</div>
+
+        <div class="episodes">
+            <h2>Episodes</h2>
+            <div class="episode">
+                <img src="https://via.placeholder.com/150" alt="Episode Thumbnail">
+                <div class="episode-info">
+                    <div class="episode-title">Pilot</div>
+                    <div class="episode-description">Structural engineer Michael Scofield gets himself sent to jail to plan an escape for his brother, who is on death row but says he was framed.</div>
+                </div>
+            </div>
+            <div class="episode">
+                <img src="https://via.placeholder.com/150" alt="Episode Thumbnail">
+                <div class="episode-info">
+                    <div class="episode-title">Allen</div>
+                    <div class="episode-description">Michael tries to get his hands on two items: a drug that will help him test positive for diabetes and a large bolt that he can use in his escape plan.</div>
+                </div>
+            </div>
+            <div class="episode">
+                <img src="https://via.placeholder.com/150" alt="Episode Thumbnail">
+                <div class="episode-info">
+                    <div class="episode-title">Allen</div>
+                    <div class="episode-description">Michael tries to get his hands on two items: a drug that will help him test positive for diabetes and a large bolt that he can use in his escape plan.</div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
