@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ronda.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('profile') }}">Back to Profile</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Background Section -->
+    <div class="full-page-image" style="background-image: url('{{ url_for('static', filename='images/cuyos.png') }}');">
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://github.com" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
