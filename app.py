@@ -2,8 +2,13 @@ from flask import Flask, render_template, request, jsonify
 from linklist import Linklist
 from conversion import infix_to_postfix
 from queue_util import Queue
-from binary_tree import BinaryTree, print_fancy_tree
+from binary_tree import BinaryTree
 from graph import create_train_graph, find_shortest_path
+from bubble import bubble_sort
+from selection import selection_sort
+from insertion import insertion_sort
+from quick import quick_sort
+from merge import merge_sort
 
 app = Flask(__name__)
 
@@ -23,6 +28,7 @@ stations = {
              'Santolan']
 }
 
+binary_tree = BinaryTree()
 
 @app.route("/")
 def index():
@@ -68,45 +74,46 @@ def garcia():
 @app.route('/linklist', methods=["GET", "POST"])  # Combined route for stack operations
 def linklist():
     stack_contents = ""
+    message = ""  # Add a separate message variable
 
     if request.method == "POST":
         # Perform linked list-related operations
         if "push" in request.form:
             data = request.form["data"]
-            linked_list.push(data)  # Use linked_list instead of stack
-            stack_contents = f"{data}"
+            linked_list.push(data)
         elif "pop" in request.form:
             popped_item = linked_list.pop()
-            stack_contents = f"Popped: {popped_item}" if popped_item else "The list is empty, nothing to pop."
+            message = f"Popped: {popped_item}" if popped_item else "The list is empty, nothing to pop."
         elif "peek" in request.form:
             if linked_list.is_empty():
-                stack_contents = "The list is empty."
+                message = "List is empty - nothing to peek at"
             else:
                 top_item = linked_list.peek()
-                stack_contents = f"Top item: {top_item}"
+                message = f"Peeked at first item: {top_item}"
         elif "remove_beginning" in request.form:
             removed_item = linked_list.remove_beginning()
-            stack_contents = f"Removed from the beginning: {removed_item}" if removed_item else "No data to remove."
-        elif "remove_end" in request.form:
+            message = f"Removed from the beginning: {removed_item}" if removed_item else "No data to remove."
+        elif "remove_at_end" in request.form:
             removed_item = linked_list.remove_at_end()
-            stack_contents = f"Removed from the end: {removed_item}" if removed_item else "No data to remove."
+            message = f"Removed from the end: {removed_item}" if removed_item else "No data to remove."
         elif "remove_at" in request.form:
             data = request.form["data"]
             removed_item = linked_list.remove_at(data)
-            stack_contents = f"Removed item: {removed_item}" if removed_item else f"Item {data} not found."
+            message = f"Removed item: {removed_item}" if removed_item else f"Item {data} not found."
+
 
     # Format linked list contents for display
     if not linked_list.is_empty():
         stack_items = []
-        current_node = linked_list.top  # Use linked_list instead of stack
+        current_node = linked_list.top
         while current_node:
             stack_items.append(current_node.data)
             current_node = current_node.next
-        stack_contents = " -> ".join(stack_items)  # Reset stack_contents to avoid duplication
+        stack_contents = " -> ".join(stack_items)
     else:
         stack_contents = "The list is empty."
 
-    return render_template('linklist.html', stack_contents=stack_contents)  # Render template with contents
+    return render_template('linklist.html', stack_contents=stack_contents, message=message)  # Add message to template
 
 @app.route("/convert", methods=["GET", "POST"])
 def convert():
@@ -148,20 +155,42 @@ def queue():
     return render_template("queue.html", items=items, message=message)
 
 @app.route("/binary", methods=["GET", "POST"])
-def binary_tree():
-    tree = BinaryTree(10)  # Initialize or load your tree
+def binary():
+    global binary_tree
+    message = ""
+    success = True
+
     if request.method == "POST":
         action = request.form.get("action")
-        if action == "insert":
-            value = int(request.form.get("value"))
-            tree.insert(value)  # Implement an insert method in your BinaryTree class
-        elif action == "delete":
-            value = int(request.form.get("value"))
-            tree.delete_node(tree.root, value)
 
-    tree_display = print_fancy_tree(tree.root)
-    return render_template("binary.html", tree_display=tree_display)
+        if action == "create_root":
+            try:
+                new_value = int(request.form.get("new_value"))
+                success, message = binary_tree.insert_at_node(None, new_value, None)
+            except ValueError:
+                success = False
+                message = "Please enter a valid number"
 
+        elif action == "insert":
+            try:
+                parent_value = int(request.form.get("parent_value"))
+                new_value = int(request.form.get("new_value"))
+                direction = request.form.get("direction")
+                success, message = binary_tree.insert_at_node(parent_value, new_value, direction)
+            except ValueError:
+                success = False
+                message = "Please enter valid numbers"
+
+    # Get tree data for visualization
+    tree_data = binary_tree.get_tree_data()
+
+    return render_template(
+        "binary_tree.html",
+        tree=binary_tree,
+        tree_data=tree_data,
+        message=message,
+        success=success
+    )
 @app.route("/stations")
 def stations():
     return render_template("stations.html", stations=stations)
@@ -184,6 +213,31 @@ def find_path():
     error = "Please select both origin and destination stations."
     return render_template("stations.html", stations=stations, error=error)
 
+@app.route("/sorting", methods=["GET", "POST"])
+def sorting():
+    if request.method == "POST":
+        array_str = request.form.get("array")
+        algo = request.form.get("algo")
+        try:
+            arr = [int(x) for x in array_str.split(",")]
+        except ValueError:
+            return "Invalid input array", 400
+
+        if algo == "bubble":
+            sorting_steps = bubble_sort(arr.copy())
+        elif algo == "selection":
+            sorting_steps = selection_sort(arr.copy())
+        elif algo == "insertion":
+            sorting_steps = insertion_sort(arr.copy())
+        elif algo == "merge":
+            sorting_steps = list(merge_sort(arr.copy()))
+        elif algo == "quick":
+            sorting_steps = quick_sort(arr.copy())
+        else:
+            return "Invalid sorting algorithm", 400
+
+        return jsonify(list(sorting_steps))
+    return render_template("sorting.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/binary_tree.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="binary-tree-container">
+            <h1>Binary Tree Visualization</h1>
+            
+            <!-- Status Messages -->
+            {% if message %}
+            <div class="status-message {% if success %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+            {% endif %}
+
+            <!-- Tree Size Display -->
+            <div class="tree-info">
+                <p>Nodes: {{ tree.size }}/15</p>
+            </div>
+
+            <!-- Tree Visualization -->
+            <div class="tree-display">
+                <!-- SVG for connecting lines -->
+                <svg class="connections">
+                    {% for node in tree_data %}
+                        {% if node.parent is not none %}
+                            {% for parent in tree_data %}
+                                {% if parent.value == node.parent %}
+                                    <line
+                                        x1="{{ (parent.x * 60) + 400 }}"
+                                        y1="{{ (parent.level * 80) + 45 }}"
+                                        x2="{{ (node.x * 60) + 400 }}"
+                                        y2="{{ (node.level * 80) + 45 }}"
+                                        class="connection-line"
+                                    />
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </svg>
+
+                <!-- Tree nodes -->
+                {% for node in tree_data %}
+                <div class="node"
+                     style="--x: {{ node.x }}; --level: {{ node.level }};"
+                     {% if node.parent is not none %}data-parent="{{ node.parent }}"{% endif %}
+                >
+                    {{ node.value }}
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Operations Form -->
+            <div class="operations-panel">
+                <form method="POST">
+                    {% if not tree.size %}
+                    <!-- Initial node input -->
+                    <div class="input-group">
+                        <input type="number" name="new_value" placeholder="Enter root node value" required>
+                        <button type="submit" name="action" value="create_root" class="btn">Create Root Node</button>
+                    </div>
+                    {% else %}
+                    <!-- Node insertion form -->
+                    <div class="input-group">
+                        <input type="number" name="parent_value" placeholder="Parent node value" required>
+                        <input type="number" name="new_value" placeholder="New node value" required>
+                        <select name="direction" required>
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                        </select>
+                        <button type="submit" name="action" value="insert" class="btn">Insert Node</button>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/binary_tree.js') }}"></script>
+</body>
+</html>

@@ -1,6 +1,3 @@
-from fancy_tree_printer import print_fancy_tree
-
-
 class Node:
     def __init__(self, value):
         self.value = value
@@ -9,74 +6,92 @@ class Node:
 
 
 class BinaryTree:
-    def __init__(self, root_value):
-        self.root = Node(root_value)
+    def __init__(self):
+        self.root = None
+        self.size = 0
+        self.positions = {}  # Store x-positions for each node
 
-    def insert(self, value):
-        """
-        Inserts a value into the binary tree while maintaining BST properties.
-        """
+    def insert_at_node(self, parent_value, new_value, direction):
+        if self.size >= 15:
+            return False, "Tree is at maximum capacity (15 nodes)"
 
-        def _insert_recursive(current_node, value):
-            if current_node is None:
-                return Node(value)
-            if value < current_node.value:
-                current_node.left = _insert_recursive(current_node.left, value)
-            elif value > current_node.value:
-                current_node.right = _insert_recursive(current_node.right, value)
-            return current_node
+        if self.root is None:
+            self.root = Node(new_value)
+            self.positions[new_value] = {'x': 0, 'level': 0}  # Root at center (x=0)
+            self.size += 1
+            return True, "Root node created"
 
-        self.root = _insert_recursive(self.root, value)
+        # Find the parent node
+        parent = self._find_node(self.root, parent_value)
+        if parent is None:
+            return False, f"Parent node with value {parent_value} not found"
 
-    def delete_node(self, root, key):
-        """
-        Deletes a node with the specified key from the binary tree.
-        """
-        if root is None:
-            return root
+        # Check if new value is same as parent value
+        if parent_value == new_value:
+            return False, f"Child node cannot have the same value as its parent ({new_value})"
 
-        if key < root.value:
-            root.left = self.delete_node(root.left, key)
-        elif key > root.value:
-            root.right = self.delete_node(root.right, key)
-        else:
-            # Node with only one child or no child
-            if root.left is None:
-                return root.right
-            elif root.right is None:
-                return root.left
+        # Get parent's position
+        parent_pos = self.positions[parent_value]
+        parent_x = parent_pos['x']
+        parent_level = parent_pos['level']
 
-            # Node with two children: Get the inorder successor
-            min_larger_node = self._find_min(root.right)
-            root.value = min_larger_node.value
-            root.right = self.delete_node(root.right, min_larger_node.value)
+        # Calculate new node position
+        offset = 2 ** (3 - parent_level) / 2  # Adjust spacing based on level
+        if direction == "left":
+            if parent.left is not None:
+                return False, f"Left child of {parent_value} already exists"
+            parent.left = Node(new_value)
+            self.positions[new_value] = {
+                'x': parent_x - offset,
+                'level': parent_level + 1
+            }
+            self.size += 1
+            return True, f"Added {new_value} to the left of {parent_value}"
+        elif direction == "right":
+            if parent.right is not None:
+                return False, f"Right child of {parent_value} already exists"
+            parent.right = Node(new_value)
+            self.positions[new_value] = {
+                'x': parent_x + offset,
+                'level': parent_level + 1
+            }
+            self.size += 1
+            return True, f"Added {new_value} to the right of {parent_value}"
 
-        return root
+        return False, "Invalid direction specified"
 
-    def _find_min(self, node):
-        """
-        Finds the node with the minimum value in the given subtree.
-        """
-        current = node
-        while current.left is not None:
-            current = current.left
-        return current
+    def _find_node(self, node, value):
+        if node is None or node.value == value:
+            return node
 
-    def search(self, root, key):
-        """
-        Searches for a node with the specified key in the binary tree.
-        """
-        if root is None or root.value == key:
-            return root
+        left_result = self._find_node(node.left, value)
+        if left_result:
+            return left_result
 
-        if key < root.value:
-            return self.search(root.left, key)
+        return self._find_node(node.right, value)
 
-        return self.search(root.right, key)
+    def get_tree_data(self):
+        """Convert the tree into a format suitable for visualization"""
+        if not self.root:
+            return []
 
-    def display(self):
-        """
-        Displays the binary tree visually (optional utility function).
-        """
-        return print_fancy_tree(self.root)
+        result = []
+        queue = [(self.root, None)]  # (node, parent_value)
 
+        while queue:
+            node, parent = queue.pop(0)
+            pos = self.positions[node.value]
+
+            result.append({
+                'value': node.value,
+                'level': pos['level'],
+                'x': pos['x'],
+                'parent': parent
+            })
+
+            if node.left:
+                queue.append((node.left, node.value))
+            if node.right:
+                queue.append((node.right, node.value))
+
+        return result
