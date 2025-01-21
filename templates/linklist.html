@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linklist</title>
+    <title>Linked List Operations</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/linklist.css') }}">
 </head>
 <body>
@@ -17,28 +17,45 @@
         </div>
     </nav>
 
-<div class="stack-container">
-    <h2>Current Stack:</h2>
-    <!-- Dynamic stack contents/message -->
-    <div id="stack-display">
-        <p><strong>{{ stack_contents }}</strong></p>
-    </div>
+    <div class="container">
+        <div class="linked-list-container">
+            <h1>Linked List Operations</h1>
+            
+            <!-- Operation Status -->
+            {% if message %}
+            <div class="status-message">
+                {{ message }}
+            </div>
+            {% endif %}
 
-    <form method="POST">
-        <div>
-            <label for="data">Data:</label>
-            <input type="text" name="data" id="data" placeholder="Enter data...">
+            <!-- Current List Display -->
+            <div class="list-display">
+                <h2>Current List:</h2>
+                <div class="list-content">
+                    {{ stack_contents }}
+                </div>
+            </div>
+
+            <!-- Operations Form -->
+            <div class="operations-panel">
+                <form method="POST">
+                    <div class="input-group">
+                        <input type="text" name="data" id="data" placeholder="Enter data..." required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" name="push" class="btn">Push</button>
+                        <button type="submit" name="pop" class="btn">Pop</button>
+                        <button type="submit" name="peek" class="btn">Peek</button>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" name="remove_beginning" class="btn">Remove from Beginning</button>
+                        <button type="submit" name="remove_at_end" class="btn">Remove from End</button>
+                        <button type="submit" name="remove_at" class="btn">Remove At</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <button type="submit" name="push">Push</button>
-            <button type="submit" name="pop">Pop</button>
-            <button type="submit" name="peek">Peek</button>
-            <button type="submit" name="remove_beginning">Remove from Beginning</button>
-            <button type="submit" name="remove_at_end">Remove from End</button>
-            <button type="submit" name="remove_at">Remove At</button>
-        </div>
-    </form>
-</div>
+    </div>
 
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/linklist.js') }}"></script>

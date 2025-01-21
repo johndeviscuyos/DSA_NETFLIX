@@ -1,24 +1,19 @@
-/* General Reset */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #141414; /* Black background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #141414;
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding-top: 60px; /* Adjust for navbar */
+    padding-top: 60px;
 }
 
-/* Navbar Styling */
+/* Navbar Styling - Original */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -50,7 +45,7 @@ body {
 }
 
 .nav-links a {
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
     color: white;
     font-size: 1.1rem;
     transition: color 0.3s;
@@ -59,82 +54,117 @@ body {
 .nav-links a:hover {
     color: gray;
 }
+
+/* Main container */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-/* Main Layout Container */
-.stack-container {
-    display: flex;
-    gap: 40px; /* Space between sections */
-    align-items: flex-start; /* Align to the top */
+.linked-list-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
 }
 
-/* Form Container */
-.form-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-    width: 300px; /* Fixed width */
-    gap: 15px;
-    margin-bottom: 30px;
+/* Headings */
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
 }
 
-/* Input Field */
+h2 {
+    color: #34495e;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Status message */
+.status-message {
+    background-color: #e8f4f8;
+    border-left: 4px solid #3498db;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    color: #2980b9;
+}
+
+/* List display */
+.list-display {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+}
+
+.list-content {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    word-break: break-all;
+    color: #2c3e50;
+    padding: 0.5rem;
+}
+
+/* Operations panel */
+.operations-panel {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 6px;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
 input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid white;
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
     font-size: 1rem;
-    width: 50%;
-    margin top: 10px;
+    transition: border-color 0.3s;
 }
 
-/* Button Layout */
+input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Button styles */
 .button-group {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 30px;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
-/* Buttons */
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
+.btn {
+    padding: 0.7rem 1.2rem;
     border: none;
-    border-radius: 20px;
-    background-color: red;
+    border-radius: 4px;
+    background-color: #3498db;
     color: white;
     cursor: pointer;
-    transition: 0.3s ease;
-    margin-top: 10px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
 }
 
-button:hover {
-    background-color: darkred;
+.btn:hover {
+    background-color: #2980b9;
 }
 
-/* Data Display Section */
-#stack-display {
-    padding: 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-    width: 800px; /* Bigger width for data display */
-    height: 300px; /* Fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.5rem;
-    color: white;
-    background-color: #000;
-    margin-bottom: 30px;
-}
-
-/* Heading Style */
-h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
+/* Responsive design */
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
 }
