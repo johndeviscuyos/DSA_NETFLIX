@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #141414;
+            color: white;
+            padding-top: 60px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 3rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-and-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: red;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        /* Sorting Visualizer Specific Styles */
+        #container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        #input-area {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .array-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 600px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .array-bar {
+            background-color: #e50914;
+            width: calc((100% - 140px) / 15);  /* Exactly 15 bars with spacing */
+            margin: 0 4px;
+            transition: height 0.2s ease;
+            color: white;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 5px;
+            font-size: 1rem;
+            max-height: 550px;  /* Leave space for numbers at bottom */
+        }
+
+        .comparing {
+            background-color: #e74c3c;
+        }
+
+        .sorted {
+            background-color: #2ecc71;
+        }
+
+        button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff0f1a;
+        }
+
+        input, select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 1em;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+
+        select option {
+            background-color: #141414;
+            color: white;
+            padding: 8px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #e50914;
+            box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #visualization {
+            margin-top: 2rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-and-nav">
+            <div class="logo">Codecks</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('works') }}">Back to Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="container">
+        <h1>Sorting Visualizer</h1>
+        <form id="input-area">
+            <div>
+                <label for="numbers">Enter numbers (comma-separated):</label>
+                <input type="text" id="numbers" name="numbers" placeholder="e.g., 64,34,25,12,22,11,90">
+                <label for="algorithm">Select Algorithm:</label>
+                <select id="algorithm" name="algorithm">
+                    <option value="bubble">Bubble Sort</option>
+                    <option value="insertion">Insertion Sort</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="merge">Merge Sort</option>
+                    <option value="quick">Quick Sort</option>
+                </select>
+                <button type="button" onclick="startSorting()">Sort</button>
+            </div>
+        </form>
+        <div class="array-container" id="array-display"></div>
+        <div id="visualization"></div>
+    </div>
+
+    <script>
+        function startSorting() {
+            const input = document.getElementById('numbers').value;
+            const algorithm = document.getElementById('algorithm').value;
+            
+            // Split the input string and convert to numbers
+            const data = input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+            
+            // Validate number of inputs
+            if (data.length > 15) {
+                alert('Please enter no more than 15 numbers!');
+                return;
+            }
+            
+            if (data.length === 0) {
+                alert('Please enter valid numbers separated by commas');
+                return;
+            }
+
+            visualizeSorting(data);
+            const steps = getSortingSteps(data.slice(), algorithm);
+            animateSort(steps);
+        }
+
+        function visualizeSorting(data) {
+            const arrayDisplay = document.getElementById('array-display');
+            arrayDisplay.innerHTML = '';
+            
+            const maxNum = Math.max(...data);
+            const bars = data.map(num => {
+                const bar = document.createElement('div');
+                bar.classList.add('array-bar');
+                
+                // Calculate height percentage but cap it at 100%
+                const heightPercentage = Math.min((num / maxNum) * 100, 100);
+                bar.style.height = `${heightPercentage}%`;
+                bar.textContent = num;
+                arrayDisplay.appendChild(bar);
+                return bar;
+            });
+            return bars;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function animateSort(steps) {
+            const arrayDisplay = document.getElementById('array-display');
+            const visualization = document.getElementById('visualization');
+            arrayDisplay.innerHTML = '';
+            visualization.innerText = '';
+
+            if (!Array.isArray(steps) || steps.length === 0) {
+                console.error("Invalid data received from server:", steps);
+                return;
+            }
+
+            const maxNum = Math.max(...steps[0]);
+            const bars = steps[0].map(num => {
+                const bar = document.createElement('div');
+                bar.classList.add('array-bar');
+                const heightPercentage = (num / maxNum) * 100;
+                bar.style.height = `${heightPercentage}%`;
+                bar.textContent = num;
+                arrayDisplay.appendChild(bar);
+                return bar;
+            });
+
+            // Simulate sorting steps
+            for (let i = 0; i < steps.length; i++) {
+                const currentArray = steps[i];
+                const prevArray = i > 0 ? steps[i - 1] : steps[0];
+
+                // Find which elements changed
+                const changed = currentArray.map((num, index) => num !== prevArray[index]);
+
+                // Update heights with animation
+                for (let j = 0; j < currentArray.length; j++) {
+                    const bar = bars[j];
+                    const heightPercentage = (currentArray[j] / maxNum) * 100;
+
+                    if (changed[j]) {
+                        bar.classList.add('comparing');
+                    }
+
+                    bar.style.height = `${heightPercentage}%`;
+                    bar.textContent = currentArray[j];
+                }
+
+                await sleep(300); // Adjust speed here
+
+                // Remove comparing class
+                bars.forEach(bar => bar.classList.remove('comparing'));
+            }
+
+            // Mark all bars as sorted at the end
+            bars.forEach(bar => bar.classList.add('sorted'));
+        }
+
+        function getSortingSteps(data, algorithm) {
+            let steps = [data.slice()];
+            switch (algorithm) {
+                case 'bubble':
+                    bubbleSort(data, steps);
+                    break;
+                case 'insertion':
+                    insertionSort(data, steps);
+                    break;
+                case 'selection':
+                    selectionSort(data, steps);
+                    break;
+                case 'merge':
+                    mergeSort(data, steps);
+                    break;
+                case 'quick':
+                    quickSort(data, steps);
+                    break;
+                default:
+                    console.error('Unsupported algorithm:', algorithm);
+            }
+            return steps;
+        }
+
+        function bubbleSort(data, steps) {
+            for (let i = 0; i < data.length - 1; i++) {
+                for (let j = 0; j < data.length - i - 1; j++) {
+                    if (data[j] > data[j + 1]) {
+                        [data[j], data[j + 1]] = [data[j + 1], data[j]];
+                        steps.push(data.slice());
+                    }
+                }
+            }
+        }
+
+        function insertionSort(data, steps) {
+            for (let i = 1; i < data.length; i++) {
+                let key = data[i];
+                let j = i - 1;
+                while (j >= 0 && data[j] > key) {
+                    data[j + 1] = data[j];
+                    j--;
+                }
+                data[j + 1] = key;
+                steps.push(data.slice());
+            }
+        }
+
+        function selectionSort(data, steps) {
+            for (let i = 0; i < data.length - 1; i++) {
+                let minIndex = i;
+                for (let j = i + 1; j < data.length; j++) {
+                    if (data[j] < data[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                [data[i], data[minIndex]] = [data[minIndex], data[i]];
+                steps.push(data.slice());
+            }
+        }
+
+        function mergeSort(data, steps) {
+            if (data.length <= 1) {
+                return;
+            }
+            const middle = Math.floor(data.length / 2);
+            const left = data.slice(0, middle);
+            const right = data.slice(middle);
+            mergeSort(left, steps);
+            mergeSort(right, steps);
+            merge(left, right, data, steps);
+        }
+
+        function merge(left, right, data, steps) {
+            let i = 0, j = 0, k = 0;
+            while (i < left.length && j < right.length) {
+                if (left[i] <= right[j]) {
+                    data[k] = left[i];
+                    i++;
+                } else {
+                    data[k] = right[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i < left.length) {
+                data[k] = left[i];
+                i++;
+                k++;
+            }
+            while (j < right.length) {
+                data[k] = right[j];
+                j++;
+                k++;
+            }
+            steps.push(data.slice());
+        }
+
+        function quickSort(data, steps) {
+            if (data.length <= 1) {
+                return;
+            }
+            const pivot = data[0];
+            const less = [];
+            const greater = [];
+            for (let i = 1; i < data.length; i++) {
+                if (data[i] <= pivot) {
+                    less.push(data[i]);
+                } else {
+                    greater.push(data[i]);
+                }
+            }
+            quickSort(less, steps);
+            quickSort(greater, steps);
+            data.length = 0;
+            data.push(...less, pivot, ...greater);
+            steps.push(data.slice());
+        }
+    </script>
+</body>
+</html>

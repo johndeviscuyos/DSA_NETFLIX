@@ -38,7 +38,7 @@
             <img src="{{ url_for('static', filename='images/queue.png') }}" alt="Queue">
             <div class="description">A linear data structure that follows the FIFO (First In, First Out) principle. Elements are added at the rear (enqueue) and removed from the front (dequeue)..</div>
         </a>
-        <a href="/aa" class="list-item">
+        <a href="{{ url_for('binary') }}" class="list-item">
             <img src="{{ url_for('static', filename='images/Binary.png') }}" alt="binary">
             <div class="description">A hierarchical data structure in which each node has at most two children, referred to as the left and right child.</div>
         </a>
@@ -53,8 +53,8 @@
             <img src="{{ url_for('static', filename='images/graph.png') }}" alt="Law and Order">
             <div class="description">Hindi na muling maliligaw sa landas na tatahakin</div>
         </a>
-        <a href="/my-hero-academia" class="list-item">
-            <img src="https://via.placeholder.com/200x300?text=My+Hero+Academia" alt="My Hero Academia">
+        <a href="{{ url_for('sorting') }}" class="list-item">
+            <img src="{{ url_for('static', filename='images/Sorting.png') }}" alt="My Hero Academia">
             <div class="description">A world of heroes and powerful quirks.</div>
         </a>
     </div>
