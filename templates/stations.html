@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codecks</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stations.css') }}">
+</head>
 <body>
     <header>
         <nav class="navbar">
@@ -35,8 +36,6 @@
             });
         }
     </script>
-</head>
-<body>
     <div class="carousel">
         <button class="carousel-btn left-btn" onclick="prevImage()">&#8592;</button>
         <img id="carousel-image" src="{{ url_for('static', filename='images/MRT3.png') }}" alt="MRT3">

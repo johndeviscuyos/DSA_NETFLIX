@@ -4,6 +4,16 @@ body {
     background-color: #141414;
     color: #fff;
     font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -23,6 +33,7 @@ body {
 .profile {
     cursor: pointer;
     transition: transform 0.3s ease;
+    text-align: center;
 }
 
 .profile:hover {
