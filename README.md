@@ -10,6 +10,9 @@ html
 css
 javascript
 
+Video of running the code
+*https://youtu.be/OjgqllqSAD4
+
 ## Prerequisites
 
 *   Python 3.7 or higher
